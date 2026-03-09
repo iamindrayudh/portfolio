@@ -4,252 +4,412 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indrayudh - NLP Researcher Portfolio</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #09090b;
+            --panel: rgba(24, 24, 27, 0.78);
+            --panel-strong: rgba(39, 39, 42, 0.88);
+            --border: rgba(255, 255, 255, 0.12);
+            --muted: #a1a1aa;
+            --text: #f4f4f5;
+            --spotlight-x: 50%;
+            --spotlight-y: 20%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
-            color: #334155; /* Dark slate gray text */
+            background:
+                radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+                linear-gradient(180deg, #111113 0%, #09090b 35%, #050505 100%);
+            color: var(--text);
+            min-height: 100vh;
         }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(36rem circle at var(--spotlight-x) var(--spotlight-y), rgba(255, 255, 255, 0.12), transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: auto, 72px 72px, 72px 72px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.55));
+            z-index: 0;
+        }
+
+        ::selection {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(16px);
+        }
+
+        .panel-hover {
+            transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+        }
+
+        .panel-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: var(--panel-strong);
+            box-shadow: 0 24px 72px rgba(0, 0, 0, 0.35);
+        }
+
         .section-heading {
             position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.875rem;
+            padding-bottom: 0.875rem;
             margin-bottom: 2rem;
         }
+
+        .section-heading::before {
+            content: "";
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+        }
+
         .section-heading::after {
-            content: '';
+            content: "";
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 50%;
-            height: 4px;
-            background-color: #6366f1; /* Indigo */
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+        }
+
+        .mono-button {
+            transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+        }
+
+        .mono-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -0.45rem;
+            top: 0.4rem;
+            width: 0.8rem;
+            height: 0.8rem;
             border-radius: 9999px;
+            background: #fafafa;
+            box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06);
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating-avatar {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
 <body class="antialiased">
-
-    <!-- Header/Hero Section -->
-    <header class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-20 px-4 sm:px-6 lg:px-8 shadow-lg rounded-b-3xl">
-        <div class="max-w-4xl mx-auto text-center">
-            <img src="me.jpeg" alt="Indrayudh's Profile Picture" class="rounded-full border-4 border-white mx-auto mb-6 shadow-md">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
-                Indrayudh
-            </h1>
-            <p class="text-xl sm:text-2xl font-light mb-6">
-                NLP Researcher at <span class="font-semibold">Lingo Labs, IIT Gandhinagar</span>
-            </p>
-            <p class="text-lg sm:text-xl mb-8">
-                M.Tech in Artificial Intelligence (2024-2026)
-            </p>
-            <div class="flex justify-center space-x-4">
-                <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-700 hover:bg-gray-100 px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                    LinkedIn
-                </a>
-                <a href="#contact" class="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                    Contact Me
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
-        <!-- About Section -->
-        <section id="about" class="mb-16 bg-white p-8 rounded-xl shadow-md">
-            <h2 class="text-3xl font-bold section-heading">About Me</h2>
-            <p class="text-lg leading-relaxed mb-4">
-                I am Indrayudh, NLP Researcher with a strong passion for Artificial Intelligence. Currently pursuing my M.Tech in AI at IIT Gandhinagar (2024-2026), I am actively involved in research at Lingo Labs under the guidance of <span class="font-medium">Prof. Mayank Singh</span>.
-            </p>
-            <p class="text-lg leading-relaxed">
-                My work focuses on developing innovative solutions in Audio Models, exploring areas such as Automatic Speech Recognition Models for Indic-Languages. I am dedicated to pushing the boundaries of AI to create impactful applications.
-            </p>
-            <!-- <p class="text-gray-600 text-sm mt-4">
-                <span class="font-semibold">Note:</span> Please expand on your specific research interests, skills, and what drives your passion for NLP here.
-            </p> -->
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="mb-16 bg-white p-8 rounded-xl shadow-md">
-            <h2 class="text-3xl font-bold section-heading">Education</h2>
-            <div class="space-y-6">
-                <!-- M.Tech -->
-                <div class="border-l-4 border-indigo-500 pl-4">
-                    <h3 class="text-xl font-semibold text-gray-800">M.Tech in Artificial Intelligence</h3>
-                    <p class="text-lg text-gray-700">Indian Institute of Technology Gandhinagar (IIT Gandhinagar)</p>
-                    <p class="text-md text-gray-600">2024 &mdash; Present</p>
-                    <p class="text-md text-gray-600 mt-2">
-                        <span class="font-medium">Research Focus:</span> Natural Language Processing (NLP), Automatic Speech Recognition (ASR)
-                    </p>
-                    <p class="text-md text-gray-600">
-                        <span class="font-medium">Advisor:</span> Prof. Mayank Singh
-                    </p>
-                    <p class="text-md text-gray-600">
-                        <span class="font-medium">TA:</span> NLP (Fall 2024) , PSDV (Spring 2025)
-                    </p>
-                  
-                </div>
-                <!-- Placeholder for Bachelor's/Previous Education -->
-                <div class="border-l-4 border-gray-400 pl-4">
-                    <h3 class="text-xl font-semibold text-gray-800">Masters in Computer Applications</h3>
-                    <p class="text-lg text-gray-700">Chandigarh University (CU-IDOL)</p>
-                    <p class="text-md text-gray-600">2022 &mdash; 2024</p>
-                    <!-- <p class="text-gray-600 text-sm mt-2">
-                        <span class="font-semibold">Note:</span> Please update this section with your undergraduate degree details, including your major, university, and graduation year.
-                    </p> -->
-                </div>
-                <div class="border-l-4 border-gray-400 pl-4">
-                    <h3 class="text-xl font-semibold text-gray-800">Bachelors in Computer Applications</h3>
-                    <p class="text-lg text-gray-700">Maulana Abul Kalam Azad University of Technology (WBUT)</p>
-                    <p class="text-md text-gray-600">2019 &mdash; 2022</p>
-                    <!-- <p class="text-gray-600 text-sm mt-2">
-                        <span class="font-semibold">Note:</span> Please update this section with your undergraduate degree details, including your major, university, and graduation year.
-                    </p> -->
+    <div class="relative z-10">
+        <nav class="sticky top-0 z-30 border-b border-white/10 bg-black/35 backdrop-blur-xl">
+            <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+                <a href="#top" class="text-sm font-semibold uppercase tracking-[0.28em] text-zinc-200 transition hover:text-white">Indrayudh</a>
+                <div class="hidden items-center gap-6 text-sm text-zinc-400 md:flex">
+                    <a href="#about" class="transition hover:text-white">About</a>
+                    <a href="#experience" class="transition hover:text-white">Experience</a>
+                    <a href="#projects" class="transition hover:text-white">Projects</a>
+                    <a href="#skills" class="transition hover:text-white">Skills</a>
+                    <a href="#contact" class="transition hover:text-white">Contact</a>
                 </div>
             </div>
-        </section>
+        </nav>
 
-        <!-- Experience Section -->
-        <section id="experience" class="mb-16 bg-white p-8 rounded-xl shadow-md">
-            <h2 class="text-3xl font-bold section-heading">Experience</h2>
-            <div class="space-y-8">
-                <!-- Current Research Role -->
-                <div class="border-l-4 border-indigo-500 pl-4">
-                    <h3 class="text-xl font-semibold text-gray-800">NLP Researcher</h3>
-                    <p class="text-lg text-gray-700">Lingo Labs, IIT Gandhinagar</p>
-                    <p class="text-md text-gray-600">2024 &mdash; Present</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
-                        <li>Building an ASR for Indic-Languages from scratch</li>
-                        <li>Developed a Cross-Lingual STS Model that processes audio from Asian tonal language to English through sophisticated multi-stage pipeline</li>
-                        <!-- <li>Integrated our LLM Ganga2-1B model to discord</li> -->
-                    </ul>
-                    <!-- <p class="text-gray-600 text-sm mt-2">
-                        <span class="font-semibold">Note:</span> Detail your specific roles, responsibilities, and achievements for each experience.
-                    </p> -->
+        <header id="top" class="px-4 pb-10 pt-12 sm:px-6 lg:px-8 lg:pb-16 lg:pt-16">
+            <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+                <div class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
+                    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-zinc-300">
+                        <span class="h-2 w-2 rounded-full bg-white"></span>
+                        Open To Research Collaborations
+                    </div>
+                    <h1 class="max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                        NLP research, audio intelligence, and systems built with signal and precision.
+                    </h1>
+                    <p class="mt-6 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg">
+                        I am Indrayudh, an NLP researcher at <span class="font-semibold text-zinc-100">Lingo Labs, IIT Gandhinagar</span> and, since January 2026, also associated with <span class="font-semibold text-zinc-100">Deccan AI</span>, where I work on practical evaluation systems for modern AI workflows.
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="#projects" class="mono-button rounded-full border border-white bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-white/10">
+                            View Projects
+                        </a>
+                        <a href="#contact" class="mono-button rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white hover:text-black">
+                            Contact Me
+                        </a>
+                        <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" class="mono-button rounded-full border border-white/15 bg-transparent px-6 py-3 text-sm font-semibold text-zinc-300 hover:border-white hover:text-white">
+                            LinkedIn
+                        </a>
+                    </div>
                 </div>
-                <!-- Placeholder for previous experience -->
-                <div class="border-l-4 border-gray-400 pl-4">
-                    <h3 class="text-xl font-semibold text-gray-800">Software Developer</h3>
-                    <p class="text-lg text-gray-700">Wipro Technologies, Bengaluru</p>
-                    <p class="text-md text-gray-600">2022 &mdash; 2023</p>
-                    <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
-                        <li>Transformed legacy COBOL modules into efficient JCL scripts while working on systems for RSA Insurance Group (UK). Achieved a ~40% reduction in processing time by eliminating ~10 intermediate steps, improving system scalability and execution efficiency.</li>
-                        <li>Reduced defect leakage by ~30%, ensuring compliance with industry standards and delivering high-quality software</li>
-                    </ul>
-                    <!-- <p class="text-gray-600 text-sm mt-2">
-                        <span class="font-semibold">Note:</span> Add any other relevant job experiences, internships, or research assistant positions here.
-                    </p> -->
+
+                <div class="space-y-4">
+                    <div class="panel panel-hover floating-avatar rounded-[2rem] p-6 sm:p-8">
+                        <div class="mx-auto max-w-xs">
+                            <div class="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3">
+                                <img src="me.jpeg" alt="Indrayudh's Profile Picture" class="aspect-square w-full rounded-[1.25rem] object-cover grayscale transition duration-500 hover:scale-[1.02] hover:grayscale-0">
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <p class="text-xs uppercase tracking-[0.28em] text-zinc-500">Current Focus</p>
+                            <p class="mt-2 text-lg font-semibold text-white">ASR, Agent Evaluation, VLM Benchmarks</p>
+                            <p class="mt-2 text-sm text-zinc-400">M.Tech in Artificial Intelligence (2024-2026)</p>
+                        </div>
+                    </div>
+                    <div class="grid gap-4 sm:grid-cols-3">
+                        <div class="metric-card rounded-3xl p-4">
+                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Role</p>
+                            <p class="mt-2 text-sm font-semibold text-zinc-100">NLP Researcher, ML Intern</p>
+                        </div>
+                        <div class="metric-card rounded-3xl p-4">
+                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Affiliations</p>
+                            <p class="mt-2 text-sm font-semibold text-zinc-100">Lingo Labs, Deccan AI</p>
+                        </div>
+                        <div class="metric-card rounded-3xl p-4">
+                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Base</p>
+                            <p class="mt-2 text-sm font-semibold text-zinc-100">IIT Gandhinagar</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- Projects Section -->
-        <section id="projects" class="mb-16 bg-white p-8 rounded-xl shadow-md">
-            <h2 class="text-3xl font-bold section-heading">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">ASR for Indic-Languages</h3>
-                    <p class="text-gray-700 text-sm mb-4">Technologies Used: Python, PyTorch, Transformers</p>
-                    <p class="text-gray-600 mb-4">
-                        Coming soon...
-                    </p>
-                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium transition duration-300">Learn More &rarr;</a>
-                    <p class="text-gray-600 text-sm mt-2">
-                        <span class="font-semibold">Note:</span> In Progress
-                    </p>
+        <main class="mx-auto max-w-6xl space-y-8 px-4 pb-16 sm:px-6 lg:px-8">
+            <section id="about" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
+                <h2 class="section-heading text-3xl font-bold text-white">About Me</h2>
+                <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+                    <div class="space-y-4 text-lg leading-8 text-zinc-300">
+                        <p>
+                            I am Indrayudh, an NLP researcher with a strong passion for Artificial Intelligence. At IIT Gandhinagar, I work under the guidance of <span class="font-medium text-zinc-100">Prof. Mayank Singh</span> on research that sits at the intersection of speech, language, and deployable AI systems.
+                        </p>
+                        <p>
+                            My work spans audio models, Automatic Speech Recognition for Indic languages, and evaluation research for language and vision-language systems, with an emphasis on building robust pipelines that turn research ideas into usable tools.
+                        </p>
+                    </div>
+                    <div class="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
+                        <p class="text-xs uppercase tracking-[0.28em] text-zinc-500">Research Themes</p>
+                        <div class="mt-5 flex flex-wrap gap-3">
+                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Automatic Speech Recognition</span>
+                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Audio Models</span>
+                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Cross-Lingual Semantics</span>
+                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Indic Languages</span>
+                        </div>
+                    </div>
                 </div>
-                <!-- Project Card 2 -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">CoT-Llama3.3-70B</h3>
-                    <p class="text-gray-700 text-sm mb-4">Technologies Used: Python, PyTorch, Prompt Engineering</p>
-                    <p class="text-gray-600 mb-4">
-                        Implemented a Chain of Thought (CoT) reasoning framework using Meta's Llama 3.3 70B model via the Groq API.
-                    <a href="https://github.com/iamindrayudh/CoT-Llama3.3-70B" class="text-indigo-600 hover:text-indigo-800 font-medium transition duration-300">Learn More &rarr;</a>
-                    <!-- <p class="text-gray-600 text-sm mt-2">
-                        <span class="font-semibold">Note:</span> Link to GitHub repo or live demo.
-                    </p> -->
-                </div>
-                <!-- Project Card 3 (Add more as needed) -->
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Cross-Lingual STS Model</h3>
-                    <p class="text-gray-700 text-sm mb-4">Technologies Used: Python, Transformers, Vosk, PyTTSx3, DeepFilterNet, Tacotron2-DDC</p>
-                    <p class="text-gray-600 mb-4">
-                        Implemented a high-performance speech-to-speech translation framework that processes audio from an Asian tonal language to English through a sophisticated multi-stage pipeline. 
-                    </p>
-                    <a href="https://www.linkedin.com/in/iamindrayudh/details/projects/" class="text-indigo-600 hover:text-indigo-800 font-medium transition duration-300">Learn More &rarr;</a>
-                    <!-- <p class="text-gray-600 text-sm mt-2">
-                        <span class="font-semibold">Note:</span> Link to GitHub repo or live demo.
-                    </p> -->
-                </div>
-            <!-- </div>
-            <p class="text-gray-600 text-sm mt-8 text-center">
-                <span class="font-semibold">Note:</span> Please replace these placeholder projects with your actual work, including detailed descriptions, technologies used, and links to repositories or demos.
-            </p> -->
-        </section>
+            </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="mb-16 bg-white p-8 rounded-xl shadow-md">
-            <h2 class="text-3xl font-bold section-heading">Skills</h2>
-            <div class="flex flex-wrap gap-3">
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Natural Language Processing (NLP)</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Automatic Speech Recognition (ASR)</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Automatic Speech Recognition (ASR)</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Machine Learning</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Deep Learning</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Python</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">PyTorch</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">TensorFlow</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Hugging Face Transformers</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Data Preprocessing</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Model Evaluation</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Research & Development</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Statistical Analysis</span>
-                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-md font-medium shadow-sm">Git & GitHub</span>
-                <!-- Add more skills here -->
+            <section id="education" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
+                <h2 class="section-heading text-3xl font-bold text-white">Education</h2>
+                <div class="space-y-8">
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-semibold text-white">M.Tech in Artificial Intelligence</h3>
+                        <p class="mt-1 text-lg text-zinc-300">Indian Institute of Technology Gandhinagar</p>
+                        <p class="mt-1 text-sm uppercase tracking-[0.2em] text-zinc-500">2024 - Present</p>
+                        <div class="mt-4 grid gap-3 text-sm text-zinc-400 sm:grid-cols-2">
+                            <p><span class="font-medium text-zinc-100">Research Focus:</span> NLP, ASR</p>
+                            <p><span class="font-medium text-zinc-100">Advisor:</span> Prof. Mayank Singh</p>
+                            <p><span class="font-medium text-zinc-100">TA:</span> NLP (Fall 2024)</p>
+                            <p><span class="font-medium text-zinc-100">TA:</span> PSDV (Spring 2025)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-semibold text-white">Masters in Computer Applications</h3>
+                        <p class="mt-1 text-lg text-zinc-300">Chandigarh University (CU-IDOL)</p>
+                        <p class="mt-1 text-sm uppercase tracking-[0.2em] text-zinc-500">2022 - 2024</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-semibold text-white">Bachelors in Computer Applications</h3>
+                        <p class="mt-1 text-lg text-zinc-300">Maulana Abul Kalam Azad University of Technology (WBUT)</p>
+                        <p class="mt-1 text-sm uppercase tracking-[0.2em] text-zinc-500">2019 - 2022</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
+                <h2 class="section-heading text-3xl font-bold text-white">Experience</h2>
+                <div class="space-y-8">
+                    <article class="timeline-item">
+                        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <h3 class="text-xl font-semibold text-white">ML Intern</h3>
+                                    <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-zinc-400">Parallel Role</span>
+                                </div>
+                                <p class="text-lg text-zinc-300">Deccan AI</p>
+                            </div>
+                            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">Jan 2026 - Present</p>
+                        </div>
+                        <ul class="mt-4 space-y-3 text-base leading-7 text-zinc-300">
+                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Worked on trajectory-based workflow evaluation using a rule-based plus LLM-as-a-judge approach.</li>
+                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Developed sanity and contamination checkers for Terminal-Bench tasks to improve evaluation reliability.</li>
+                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Worked on a spatial counterfactual occlusion rearrangement evaluation benchmark for VLMs.</li>
+                        </ul>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">NLP Researcher</h3>
+                                <p class="text-lg text-zinc-300">Lingo Labs, IIT Gandhinagar</p>
+                            </div>
+                            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">2024 - Present</p>
+                        </div>
+                        <ul class="mt-4 space-y-3 text-base leading-7 text-zinc-300">
+                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Building an ASR system for Indic languages from scratch.</li>
+                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Developed a cross-lingual STS model that processes audio from an Asian tonal language to English through a multi-stage pipeline.</li>
+                        </ul>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Software Developer</h3>
+                                <p class="text-lg text-zinc-300">Wipro Technologies, Bengaluru</p>
+                            </div>
+                            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">2022 - 2023</p>
+                        </div>
+                        <ul class="mt-4 space-y-3 text-base leading-7 text-zinc-300">
+                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Transformed legacy COBOL modules into efficient JCL scripts for RSA Insurance Group systems, reducing processing time by about 40%.</li>
+                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Reduced defect leakage by around 30%, improving compliance and software quality.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="projects" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <h2 class="section-heading text-3xl font-bold text-white">Projects</h2>
+                    <p class="text-sm text-zinc-500">Selected work in research, tooling, and applied reasoning systems.</p>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    <article class="panel-hover rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
+                        <div class="mb-4 flex items-center justify-between">
+                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-zinc-400">In Progress</span>
+                            <span class="text-xs uppercase tracking-[0.24em] text-zinc-500">ASR</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">ASR for Indic Languages</h3>
+                        <p class="mt-3 text-sm text-zinc-400">Python, PyTorch, Transformers</p>
+                        <p class="mt-4 text-sm leading-7 text-zinc-300">
+                            A speech recognition system focused on Indic languages, designed to push toward robust multilingual audio understanding.
+                        </p>
+                        <a href="#" class="mt-6 inline-flex text-sm font-medium text-zinc-100 transition hover:text-white">Learn More &rarr;</a>
+                    </article>
+                    <article class="panel-hover rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
+                        <div class="mb-4 flex items-center justify-between">
+                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-zinc-400">Reasoning</span>
+                            <span class="text-xs uppercase tracking-[0.24em] text-zinc-500">LLM</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">CoT-Llama3.3-70B</h3>
+                        <p class="mt-3 text-sm text-zinc-400">Python, PyTorch, Prompt Engineering</p>
+                        <p class="mt-4 text-sm leading-7 text-zinc-300">
+                            Implemented a Chain of Thought reasoning framework using Meta's Llama 3.3 70B model through the Groq API.
+                        </p>
+                        <a href="https://github.com/iamindrayudh/CoT-Llama3.3-70B" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex text-sm font-medium text-zinc-100 transition hover:text-white">View Repository &rarr;</a>
+                    </article>
+                    <article class="panel-hover rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
+                        <div class="mb-4 flex items-center justify-between">
+                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-zinc-400">Translation</span>
+                            <span class="text-xs uppercase tracking-[0.24em] text-zinc-500">Speech</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Cross-Lingual STS Model</h3>
+                        <p class="mt-3 text-sm text-zinc-400">Python, Transformers, Vosk, PyTTSx3, DeepFilterNet, Tacotron2-DDC</p>
+                        <p class="mt-4 text-sm leading-7 text-zinc-300">
+                            Built a high-performance speech-to-speech translation framework that handles tonal language audio and produces English output through a multi-stage pipeline.
+                        </p>
+                        <a href="https://www.linkedin.com/in/iamindrayudh/details/projects/" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex text-sm font-medium text-zinc-100 transition hover:text-white">View Project Details &rarr;</a>
+                    </article>
+                </div>
+            </section>
+
+            <section id="skills" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
+                <h2 class="section-heading text-3xl font-bold text-white">Skills</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Natural Language Processing</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Automatic Speech Recognition</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Machine Learning</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Deep Learning</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Python</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">PyTorch</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">TensorFlow</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Transformers</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Data Preprocessing</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Model Evaluation</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Research and Development</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Statistical Analysis</span>
+                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Git and GitHub</span>
+                </div>
+            </section>
+
+            <section id="contact" class="panel panel-hover rounded-[2rem] p-8 text-center sm:p-10">
+                <p class="text-xs uppercase tracking-[0.32em] text-zinc-500">Get In Touch</p>
+                <h2 class="mt-4 text-3xl font-bold text-white sm:text-4xl">Research collaborations, interesting ideas, and AI conversations are always welcome.</h2>
+                <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-zinc-300">
+                    I'm always open to discussing research opportunities, collaborative work, or connecting with people building thoughtful AI systems.
+                </p>
+                <div class="mt-8 flex flex-wrap justify-center gap-3">
+                    <a href="mailto:indrayudhmandal2010@gmail.com" class="mono-button rounded-full border border-white bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-white/10">
+                        Email Me
+                    </a>
+                    <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" class="mono-button rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white hover:text-black">
+                        Connect on LinkedIn
+                    </a>
+                    <a href="https://github.com/iamindrayudh" target="_blank" rel="noopener noreferrer" class="mono-button rounded-full border border-white/15 bg-transparent px-6 py-3 text-sm font-semibold text-zinc-300 hover:border-white hover:text-white">
+                        GitHub
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="px-4 pb-10 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[0.03] px-6 py-6 text-center text-sm text-zinc-500">
+                <p>&copy; 2025 Indrayudh. All rights reserved.</p>
+                <p class="mt-2">"Attention is all you need?"</p>
             </div>
-            <!-- <p class="text-gray-600 text-sm mt-4 text-center">
-                <span class="font-semibold">Note:</span> Customize this list with all your relevant technical and soft skills.
-            </p> -->
-        </section>
+        </footer>
+    </div>
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white p-8 rounded-xl shadow-md text-center">
-            <h2 class="text-3xl font-bold section-heading text-white">Get in Touch</h2>
-            <p class="text-lg mb-6">
-                I'm always open to discussing new research opportunities, collaborations, or just connecting with fellow AI enthusiasts. Feel free to reach out!
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="mailto:indrayudhmandal2010@gmail.com" class="bg-white text-indigo-700 hover:bg-gray-100 px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                    Email Me
-                </a>
-                <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-700 hover:bg-gray-100 px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                    Connect on LinkedIn
-                </a>
-                <!-- Add other links like GitHub if you have one -->
-                <a href="https://github.com/iamindrayudh" class="bg-white text-indigo-700 hover:bg-gray-100 px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                    GitHub
-                </a>
-            </div>
-            <!-- <p class="text-gray-200 text-sm mt-6">
-                <span class="font-semibold">Note:</span> Replace "your.email@example.com" and the GitHub placeholder link with your actual contact information.
-            </p> -->
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8 text-center mt-16 rounded-t-3xl">
-        <div class="max-w-4xl mx-auto">
-            <p>&copy; 2025 Indrayudh. All rights reserved.</p>
-            <p class="text-sm mt-2">"Attention is all you need?"</p>
-        </div>
-    </footer>
-
+    <script>
+        const root = document.documentElement;
+        window.addEventListener('pointermove', (event) => {
+            root.style.setProperty('--spotlight-x', `${event.clientX}px`);
+            root.style.setProperty('--spotlight-y', `${event.clientY}px`);
+        });
+    </script>
 </body>
 </html>
