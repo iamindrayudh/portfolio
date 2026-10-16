@@ -3,413 +3,861 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indrayudh - NLP Researcher Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0f5666">
+    <title>Indrayudh Mandal | Speech NLP · Evaluation</title>
+    <meta name="description" content="Indrayudh Mandal — ML researcher at Deccan AI and speech NLP researcher at Lingo Labs, IIT Gandhinagar.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         :root {
-            --bg: #09090b;
-            --panel: rgba(24, 24, 27, 0.78);
-            --panel-strong: rgba(39, 39, 42, 0.88);
-            --border: rgba(255, 255, 255, 0.12);
-            --muted: #a1a1aa;
-            --text: #f4f4f5;
-            --spotlight-x: 50%;
-            --spotlight-y: 20%;
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, Cambria, "Times New Roman", serif;
+            --bg: #fbfaf7;
+            --surface: #ffffff;
+            --surface-2: #f6f5f1;
+            --border: #e0ddd5;
+            --border-strong: #c6c2b7;
+            --text: #1c1c1a;
+            --text-soft: #3a3a36;
+            --muted: #6f6d66;
+            --accent: #0f5666;
+            --accent-hover: #14707f;
+            --accent-soft: #eaf1f2;
+            --accent-ring: rgba(15, 86, 102, 0.22);
+            --radius-sm: 3px;
+            --radius: 5px;
+            --radius-lg: 6px;
+            --sidebar-w: 274px;
+            --gap: 58px;
+            --maxw: 1140px;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background:
-                radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
-                linear-gradient(180deg, #111113 0%, #09090b 35%, #050505 100%);
+            margin: 0;
+            font-family: var(--font-sans);
+            background: var(--bg);
             color: var(--text);
-            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(36rem circle at var(--spotlight-x) var(--spotlight-y), rgba(255, 255, 255, 0.12), transparent 40%),
-                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-            background-size: auto, 72px 72px, 72px 72px;
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.55));
-            z-index: 0;
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 8px;
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 12px;
+            z-index: 10;
         }
 
-        ::selection {
-            background: rgba(255, 255, 255, 0.18);
+        .skip-link:focus { left: 8px; }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+            gap: var(--gap);
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 44px 30px 24px;
         }
 
-        .panel {
-            background: var(--panel);
+        .sidebar {
+            position: sticky;
+            top: 26px;
+            align-self: start;
+            max-height: calc(100vh - 52px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .profile-card,
+        .site-nav,
+        .content-card {
+            background: var(--surface);
             border: 1px solid var(--border);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
-            backdrop-filter: blur(16px);
+            border-radius: var(--radius-lg);
         }
 
-        .panel-hover {
-            transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+        .profile-card {
+            padding: 24px 20px 18px;
+            text-align: center;
         }
 
-        .panel-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: var(--panel-strong);
-            box-shadow: 0 24px 72px rgba(0, 0, 0, 0.35);
+        .avatar-frame {
+            width: 132px;
+            height: 132px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            padding: 3px;
+            background: var(--border-strong);
         }
 
-        .section-heading {
-            position: relative;
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 18%;
+            display: block;
+            background: var(--surface);
+        }
+
+        .profile-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 4px;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-name a { color: var(--text); }
+        .profile-name a:hover { color: var(--accent); }
+
+        .profile-role {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 0 6px;
+        }
+
+        .profile-affiliation {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin: 0 0 14px;
+            line-height: 1.45;
+        }
+
+        .profile-meta {
+            list-style: none;
+            margin: 0 0 16px;
+            padding: 14px 0 0;
+            border-top: 1px solid var(--border);
+            font-size: 0.78rem;
+            text-align: left;
+        }
+
+        .profile-meta li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            color: var(--muted);
+            padding: 3px 0;
+        }
+
+        .profile-meta i {
+            width: 15px;
+            text-align: center;
+            color: var(--accent);
+            flex: none;
+            margin-top: 3px;
+        }
+
+        .profile-meta a { color: var(--text-soft); overflow-wrap: anywhere; }
+        .profile-meta a:hover { color: var(--accent); }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .social-row a {
             display: inline-flex;
             align-items: center;
-            gap: 0.875rem;
-            padding-bottom: 0.875rem;
-            margin-bottom: 2rem;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            color: var(--muted);
+            border: 1px solid var(--border-strong);
         }
 
-        .section-heading::before {
-            content: "";
-            width: 0.6rem;
-            height: 0.6rem;
-            border-radius: 9999px;
-            background: rgba(255, 255, 255, 0.82);
-            box-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+        .social-row a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
-        .section-heading::after {
+        .site-nav {
+            margin-top: 16px;
+            padding: 12px 10px;
+        }
+
+        .nav-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 4px 10px 10px;
+        }
+
+        .site-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 10px;
+            border-radius: var(--radius-sm);
+            color: var(--text-soft);
+            font-size: 0.86rem;
+        }
+
+        .site-nav a:hover,
+        .site-nav a:focus-visible {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .site-nav i {
+            width: 16px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .content { min-width: 0; }
+
+        .content-card { padding: 36px 44px 30px; }
+
+        .hero {
+            margin: 0 0 20px;
+            padding: 0 0 18px;
+            border-bottom: 1px solid var(--border-strong);
+        }
+
+        .hero-eyebrow {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            margin: 0 0 10px;
+            letter-spacing: -0.018em;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .hero-tagline {
+            font-size: 1.05rem;
+            color: var(--text-soft);
+            margin: 0 0 16px;
+            max-width: 68ch;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 0.845rem;
+            font-weight: 600;
+            border: 1px solid var(--border-strong);
+            background: transparent;
+            color: var(--text-soft);
+        }
+
+        .btn:hover {
+            background: var(--surface-2);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            color: #fff;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            margin: 2.1rem 0 0.95rem;
+            padding-bottom: 0.38rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.008em;
+            border-bottom: 1px solid var(--border-strong);
+        }
+
+        h2:first-of-type { margin-top: 0.4rem; }
+
+        .lead {
+            font-size: 1.03rem;
+            color: var(--text-soft);
+        }
+
+        .content p { max-width: 72ch; }
+
+        .cv-list,
+        .detail-list {
+            list-style: none;
+            margin: 0 0 0.6rem;
+            padding: 0;
+        }
+
+        .cv-list > li {
+            padding: 0 0 18px;
+        }
+
+        .cv-line {
+            margin: 0;
+            font-size: 0.97rem;
+            line-height: 1.48;
+        }
+
+        .cv-line strong { font-weight: 600; }
+        .cv-detail { color: var(--muted); }
+
+        .detail-list li {
+            position: relative;
+            padding: 4px 0 4px 16px;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        .detail-list li::before {
             content: "";
             position: absolute;
             left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+            top: 0.72em;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--border-strong);
         }
 
-        .mono-button {
-            transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+        .chip-group { margin: 0 0 1.1rem; }
+
+        .chip-group-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 7px;
         }
 
-        .mono-button:hover {
-            transform: translateY(-2px);
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
         }
 
-        .timeline-item {
+        .chip {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: var(--radius-sm);
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: var(--muted);
+            border: 1px solid var(--border-strong);
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 14px;
+            margin: 0 0 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+        }
+
+        .card {
+            padding: 17px 19px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .card-title {
+            display: block;
+            font-weight: 600;
+            font-size: 1.02rem;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-soft);
+        }
+
+        .card-meta {
+            display: block;
+            margin: 10px 0 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-right: 4px;
+            padding: 1px 8px;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        .teach-group {
+            margin: 0 0 8px;
+        }
+
+        .news-feed {
+            list-style: none;
             position: relative;
-            padding-left: 1.5rem;
-            border-left: 1px solid rgba(255, 255, 255, 0.14);
+            margin: 0;
+            padding: 4px 0 4px 30px;
         }
 
-        .timeline-item::before {
+        .news-feed::before {
             content: "";
             position: absolute;
-            left: -0.45rem;
-            top: 0.4rem;
-            width: 0.8rem;
-            height: 0.8rem;
-            border-radius: 9999px;
-            background: #fafafa;
-            box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06);
+            left: 8px;
+            top: 12px;
+            bottom: 12px;
+            width: 2px;
+            border-radius: 2px;
+            background: var(--border-strong);
         }
 
-        .metric-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .news-feed > li {
+            position: relative;
+            margin: 0 0 10px;
+            padding: 1px 0 1px 4px;
+            font-size: 0.93rem;
+            color: var(--text-soft);
+            max-width: 72ch;
         }
 
-        .floating-avatar {
-            animation: float 6s ease-in-out infinite;
+        .news-feed > li::before {
+            content: "";
+            position: absolute;
+            left: -26.5px;
+            top: 10px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--accent);
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
+        .more {
+            margin: 8px 0 4px;
+        }
+
+        .more summary {
+            cursor: pointer;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .site-footer {
+            max-width: var(--maxw);
+            margin: 10px auto 0;
+            padding: 26px 30px 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .site-footer p { margin: 4px 0; }
+
+        @media (max-width: 900px) {
+            .wrapper {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 22px;
+                padding: 26px 18px 20px;
             }
-            50% {
-                transform: translateY(-10px);
+
+            .sidebar {
+                position: static;
+                max-height: none;
+                overflow: visible;
             }
+
+            .content-card { padding: 28px 22px 24px; }
         }
     </style>
 </head>
-<body class="antialiased">
-    <div class="relative z-10">
-        <nav class="sticky top-0 z-30 border-b border-white/10 bg-black/35 backdrop-blur-xl">
-            <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-                <a href="#top" class="text-sm font-semibold uppercase tracking-[0.28em] text-zinc-200 transition hover:text-white">Indrayudh</a>
-                <div class="hidden items-center gap-6 text-sm text-zinc-400 md:flex">
-                    <a href="#about" class="transition hover:text-white">About</a>
-                    <a href="#experience" class="transition hover:text-white">Experience</a>
-                    <a href="#projects" class="transition hover:text-white">Projects</a>
-                    <a href="#skills" class="transition hover:text-white">Skills</a>
-                    <a href="#contact" class="transition hover:text-white">Contact</a>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="avatar-frame">
+                    <img src="me.jpeg" alt="Portrait of Indrayudh Mandal">
+                </div>
+                <p class="profile-name"><a href="#top">Indrayudh Mandal</a></p>
+                <p class="profile-role">ML Researcher</p>
+                <p class="profile-affiliation">Deccan AI · Lingo Labs, IIT Gandhinagar</p>
+                <ul class="profile-meta">
+                    <li>
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        <span>Hyderabad, India</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        <a href="mailto:indrayudhmandal2010@gmail.com">indrayudhmandal2010@gmail.com</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-flask" aria-hidden="true"></i>
+                        <span>ASR · TTS · Voice AI</span>
+                    </li>
+                </ul>
+                <div class="social-row">
+                    <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://github.com/iamindrayudh" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://x.com/iamindrayudh" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="mailto:indrayudhmandal2010@gmail.com" title="Email" aria-label="Email">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
-        </nav>
 
-        <header id="top" class="px-4 pb-10 pt-12 sm:px-6 lg:px-8 lg:pb-16 lg:pt-16">
-            <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-                <div class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
-                    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-zinc-300">
-                        <span class="h-2 w-2 rounded-full bg-white"></span>
-                        Open To Research Collaborations
-                    </div>
-                    <h1 class="max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                        NLP research, audio intelligence, and systems built with signal and precision.
-                    </h1>
-                    <p class="mt-6 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg">
-                        I am Indrayudh, an NLP researcher at <span class="font-semibold text-zinc-100">Lingo Labs, IIT Gandhinagar</span> and, since January 2026, also associated with <span class="font-semibold text-zinc-100">Deccan AI</span>, where I work on practical evaluation systems for modern AI workflows.
+            <nav class="site-nav" aria-label="Section navigation">
+                <p class="nav-title">Explore</p>
+                <ul>
+                    <li><a href="#about"><i class="fa-solid fa-user" aria-hidden="true"></i>About</a></li>
+                    <li><a href="#news"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i>News</a></li>
+                    <li><a href="#experience"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Experience</a></li>
+                    <li><a href="#research-interests"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i>Research Interests</a></li>
+                    <li><a href="#projects"><i class="fa-solid fa-flask" aria-hidden="true"></i>Projects</a></li>
+                    <li><a href="#education"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Education</a></li>
+                    <li><a href="#teaching"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>Teaching</a></li>
+                    <li><a href="#skills"><i class="fa-solid fa-code" aria-hidden="true"></i>Skills</a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content" id="main">
+            <article class="content-card" id="top">
+                <div class="hero">
+                    <span class="hero-eyebrow">ASR · TTS · Voice AI</span>
+                    <h1>I’m Indrayudh Mandal</h1>
+                    <p class="hero-tagline">
+                        ML Researcher at <a href="https://www.deccan.ai/">Deccan AI</a>
+                        and Speech NLP Researcher at <a href="https://lingo.iitgn.ac.in/">Lingo Labs</a>,
+                        <a href="https://iitgn.ac.in/">IIT Gandhinagar</a> —
+                        working on speech models, evaluation systems, and Voice AI.
                     </p>
-                    <div class="mt-8 flex flex-wrap gap-3">
-                        <a href="#projects" class="mono-button rounded-full border border-white bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-white/10">
-                            View Projects
-                        </a>
-                        <a href="#contact" class="mono-button rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white hover:text-black">
-                            Contact Me
-                        </a>
-                        <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" class="mono-button rounded-full border border-white/15 bg-transparent px-6 py-3 text-sm font-semibold text-zinc-300 hover:border-white hover:text-white">
-                            LinkedIn
-                        </a>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#news"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> Latest news</a>
+                        <a class="btn" href="#projects"><i class="fa-solid fa-flask" aria-hidden="true"></i> Projects</a>
+                        <a class="btn" href="#experience"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</a>
+                        <a class="btn" href="mailto:indrayudhmandal2010@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Get in touch</a>
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    <div class="panel panel-hover floating-avatar rounded-[2rem] p-6 sm:p-8">
-                        <div class="mx-auto max-w-xs">
-                            <div class="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3">
-                                <img src="me.jpeg" alt="Indrayudh's Profile Picture" class="aspect-square w-full rounded-[1.25rem] object-cover grayscale transition duration-500 hover:scale-[1.02] hover:grayscale-0">
-                            </div>
-                        </div>
-                        <div class="mt-6 text-center">
-                            <p class="text-xs uppercase tracking-[0.28em] text-zinc-500">Current Focus</p>
-                            <p class="mt-2 text-lg font-semibold text-white">ASR, Agent Evaluation, VLM Benchmarks</p>
-                            <p class="mt-2 text-sm text-zinc-400">M.Tech in Artificial Intelligence (2024-2026)</p>
-                        </div>
-                    </div>
-                    <div class="grid gap-4 sm:grid-cols-3">
-                        <div class="metric-card rounded-3xl p-4">
-                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Role</p>
-                            <p class="mt-2 text-sm font-semibold text-zinc-100">NLP Researcher, ML Intern</p>
-                        </div>
-                        <div class="metric-card rounded-3xl p-4">
-                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Affiliations</p>
-                            <p class="mt-2 text-sm font-semibold text-zinc-100">Lingo Labs, Deccan AI</p>
-                        </div>
-                        <div class="metric-card rounded-3xl p-4">
-                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Base</p>
-                            <p class="mt-2 text-sm font-semibold text-zinc-100">IIT Gandhinagar</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <main class="mx-auto max-w-6xl space-y-8 px-4 pb-16 sm:px-6 lg:px-8">
-            <section id="about" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
-                <h2 class="section-heading text-3xl font-bold text-white">About Me</h2>
-                <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-                    <div class="space-y-4 text-lg leading-8 text-zinc-300">
-                        <p>
-                            I am Indrayudh, an NLP researcher with a strong passion for Artificial Intelligence. At IIT Gandhinagar, I work under the guidance of <span class="font-medium text-zinc-100">Prof. Mayank Singh</span> on research that sits at the intersection of speech, language, and deployable AI systems.
-                        </p>
-                        <p>
-                            My work spans audio models, Automatic Speech Recognition for Indic languages, and evaluation research for language and vision-language systems, with an emphasis on building robust pipelines that turn research ideas into usable tools.
-                        </p>
-                    </div>
-                    <div class="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
-                        <p class="text-xs uppercase tracking-[0.28em] text-zinc-500">Research Themes</p>
-                        <div class="mt-5 flex flex-wrap gap-3">
-                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Automatic Speech Recognition</span>
-                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Audio Models</span>
-                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Cross-Lingual Semantics</span>
-                            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200">Indic Languages</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="education" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
-                <h2 class="section-heading text-3xl font-bold text-white">Education</h2>
-                <div class="space-y-8">
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-white">M.Tech in Artificial Intelligence</h3>
-                        <p class="mt-1 text-lg text-zinc-300">Indian Institute of Technology Gandhinagar</p>
-                        <p class="mt-1 text-sm uppercase tracking-[0.2em] text-zinc-500">2024 - Present</p>
-                        <div class="mt-4 grid gap-3 text-sm text-zinc-400 sm:grid-cols-2">
-                            <p><span class="font-medium text-zinc-100">Research Focus:</span> NLP, ASR</p>
-                            <p><span class="font-medium text-zinc-100">Advisor:</span> Prof. Mayank Singh</p>
-                            <p><span class="font-medium text-zinc-100">TA:</span> NLP (Fall 2024)</p>
-                            <p><span class="font-medium text-zinc-100">TA:</span> PSDV (Spring 2025)</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-white">Masters in Computer Applications</h3>
-                        <p class="mt-1 text-lg text-zinc-300">Chandigarh University (CU-IDOL)</p>
-                        <p class="mt-1 text-sm uppercase tracking-[0.2em] text-zinc-500">2022 - 2024</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-white">Bachelors in Computer Applications</h3>
-                        <p class="mt-1 text-lg text-zinc-300">Maulana Abul Kalam Azad University of Technology (WBUT)</p>
-                        <p class="mt-1 text-sm uppercase tracking-[0.2em] text-zinc-500">2019 - 2022</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="experience" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
-                <h2 class="section-heading text-3xl font-bold text-white">Experience</h2>
-                <div class="space-y-8">
-                    <article class="timeline-item">
-                        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                                <div class="flex flex-wrap items-center gap-3">
-                                    <h3 class="text-xl font-semibold text-white">ML Intern</h3>
-                                    <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-zinc-400">Parallel Role</span>
-                                </div>
-                                <p class="text-lg text-zinc-300">Deccan AI</p>
-                            </div>
-                            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">Jan 2026 - Present</p>
-                        </div>
-                        <ul class="mt-4 space-y-3 text-base leading-7 text-zinc-300">
-                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Worked on trajectory-based workflow evaluation using a rule-based plus LLM-as-a-judge approach.</li>
-                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Developed sanity and contamination checkers for Terminal-Bench tasks to improve evaluation reliability.</li>
-                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Worked on a spatial counterfactual occlusion rearrangement evaluation benchmark for VLMs.</li>
-                        </ul>
-                    </article>
-                    <article class="timeline-item">
-                        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                                <h3 class="text-xl font-semibold text-white">NLP Researcher</h3>
-                                <p class="text-lg text-zinc-300">Lingo Labs, IIT Gandhinagar</p>
-                            </div>
-                            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">2024 - Present</p>
-                        </div>
-                        <ul class="mt-4 space-y-3 text-base leading-7 text-zinc-300">
-                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Building an ASR system for Indic languages from scratch.</li>
-                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Developed a cross-lingual STS model that processes audio from an Asian tonal language to English through a multi-stage pipeline.</li>
-                        </ul>
-                    </article>
-                    <article class="timeline-item">
-                        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                                <h3 class="text-xl font-semibold text-white">Software Developer</h3>
-                                <p class="text-lg text-zinc-300">Wipro Technologies, Bengaluru</p>
-                            </div>
-                            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">2022 - 2023</p>
-                        </div>
-                        <ul class="mt-4 space-y-3 text-base leading-7 text-zinc-300">
-                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Transformed legacy COBOL modules into efficient JCL scripts for RSA Insurance Group systems, reducing processing time by about 40%.</li>
-                            <li class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">Reduced defect leakage by around 30%, improving compliance and software quality.</li>
-                        </ul>
-                    </article>
-                </div>
-            </section>
-
-            <section id="projects" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                    <h2 class="section-heading text-3xl font-bold text-white">Projects</h2>
-                    <p class="text-sm text-zinc-500">Selected work in research, tooling, and applied reasoning systems.</p>
-                </div>
-                <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                    <article class="panel-hover rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
-                        <div class="mb-4 flex items-center justify-between">
-                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-zinc-400">In Progress</span>
-                            <span class="text-xs uppercase tracking-[0.24em] text-zinc-500">ASR</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-white">ASR for Indic Languages</h3>
-                        <p class="mt-3 text-sm text-zinc-400">Python, PyTorch, Transformers</p>
-                        <p class="mt-4 text-sm leading-7 text-zinc-300">
-                            A speech recognition system focused on Indic languages, designed to push toward robust multilingual audio understanding.
-                        </p>
-                        <a href="#" class="mt-6 inline-flex text-sm font-medium text-zinc-100 transition hover:text-white">Learn More &rarr;</a>
-                    </article>
-                    <article class="panel-hover rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
-                        <div class="mb-4 flex items-center justify-between">
-                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-zinc-400">Reasoning</span>
-                            <span class="text-xs uppercase tracking-[0.24em] text-zinc-500">LLM</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-white">CoT-Llama3.3-70B</h3>
-                        <p class="mt-3 text-sm text-zinc-400">Python, PyTorch, Prompt Engineering</p>
-                        <p class="mt-4 text-sm leading-7 text-zinc-300">
-                            Implemented a Chain of Thought reasoning framework using Meta's Llama 3.3 70B model through the Groq API.
-                        </p>
-                        <a href="https://github.com/iamindrayudh/CoT-Llama3.3-70B" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex text-sm font-medium text-zinc-100 transition hover:text-white">View Repository &rarr;</a>
-                    </article>
-                    <article class="panel-hover rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
-                        <div class="mb-4 flex items-center justify-between">
-                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-zinc-400">Translation</span>
-                            <span class="text-xs uppercase tracking-[0.24em] text-zinc-500">Speech</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-white">Cross-Lingual STS Model</h3>
-                        <p class="mt-3 text-sm text-zinc-400">Python, Transformers, Vosk, PyTTSx3, DeepFilterNet, Tacotron2-DDC</p>
-                        <p class="mt-4 text-sm leading-7 text-zinc-300">
-                            Built a high-performance speech-to-speech translation framework that handles tonal language audio and produces English output through a multi-stage pipeline.
-                        </p>
-                        <a href="https://www.linkedin.com/in/iamindrayudh/details/projects/" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex text-sm font-medium text-zinc-100 transition hover:text-white">View Project Details &rarr;</a>
-                    </article>
-                </div>
-            </section>
-
-            <section id="skills" class="panel panel-hover rounded-[2rem] p-8 sm:p-10">
-                <h2 class="section-heading text-3xl font-bold text-white">Skills</h2>
-                <div class="flex flex-wrap gap-3">
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Natural Language Processing</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Automatic Speech Recognition</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Machine Learning</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Deep Learning</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Python</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">PyTorch</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">TensorFlow</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Transformers</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Data Preprocessing</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Model Evaluation</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Research and Development</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Statistical Analysis</span>
-                    <span class="mono-button rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-white hover:text-black">Git and GitHub</span>
-                </div>
-            </section>
-
-            <section id="contact" class="panel panel-hover rounded-[2rem] p-8 text-center sm:p-10">
-                <p class="text-xs uppercase tracking-[0.32em] text-zinc-500">Get In Touch</p>
-                <h2 class="mt-4 text-3xl font-bold text-white sm:text-4xl">Research collaborations, interesting ideas, and AI conversations are always welcome.</h2>
-                <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-zinc-300">
-                    I'm always open to discussing research opportunities, collaborative work, or connecting with people building thoughtful AI systems.
+                <h2 id="about">About Me</h2>
+                <p class="lead">
+                    I am <em><strong>Indrayudh Mandal</strong></em>, an ML researcher at
+                    <a href="https://www.deccan.ai/">Deccan AI</a> and a speech NLP researcher at
+                    <a href="https://lingo.iitgn.ac.in/">Lingo Labs</a>,
+                    <a href="https://iitgn.ac.in/">IIT Gandhinagar</a>,
+                    where I work under the guidance of
+                    <a href="https://mayank4490.github.io/"><em>Prof. Mayank Singh</em></a>.
                 </p>
-                <div class="mt-8 flex flex-wrap justify-center gap-3">
-                    <a href="mailto:indrayudhmandal2010@gmail.com" class="mono-button rounded-full border border-white bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-white/10">
-                        Email Me
+                <p>
+                    My work spans audio models, Automatic Speech Recognition for Indic languages,
+                    text-to-speech evaluation, and evaluation research for language and vision-language systems,
+                    with an emphasis on building robust pipelines that turn research ideas into usable tools.
+                </p>
+
+                <h2 id="news">News</h2>
+                <ul class="news-feed">
+                    <li>
+                        <strong>[October 2026]</strong>
+                        Wrote about
+                        <a href="https://www.deccan.ai/research/introducing-voxclash-tts-2-0">VoxClash TTS 2.0</a>
+                        — the leaderboard now covers nine languages and ranks models by use case.
+                    </li>
+                    <li>
+                        <strong>[September 2026]</strong>
+                        <a href="https://www.deccan.ai/voxclash-tts-leaderboard">VoxClash</a>
+                        by Deccan AI went live — a blind, human-preference arena for evaluating text-to-speech models.
+                    </li>
+                    <li>
+                        <strong>[April 2026]</strong>
+                        Our
+                        <a href="https://www.deccan.ai/research/if-benchmark-constraint-choice-predicts-failure-rate-better-than-model-choice">instruction-following benchmark</a>
+                        at Deccan AI is out — we evaluated multi-constraint prompts on frontier models, and constraint type predicted failure rate better than model choice.
+                    </li>
+                    <li>
+                        <strong>[February 2026]</strong>
+                        Attended the
+                        <a href="https://www.linkedin.com/posts/iamindrayudh_visited-the-india-ai-impact-summit-2026-at-activity-7430091813648052224-YfeL">India AI Impact Summit 2026</a>
+                        in Delhi on 18 February. Met peers from IIT Gandhinagar and Lingo Labs, and teams at Soket AI Labs and BharatGen.
+                    </li>
+                    <li>
+                        <strong>[January 2026]</strong>
+                        Joined <a href="https://www.deccan.ai/">Deccan AI</a> as an ML Researcher.
+                    </li>
+                    <li>
+                        <strong>[December 2025]</strong>
+                        Attended
+                        <a href="https://www.linkedin.com/posts/iamindrayudh_indoml2025-activity-7407836104357367808-hRJ8">IndoML 2025</a>
+                        at BITS Pilani Hyderabad Campus as part of the Graduate Forum, with colleagues from Lingo Labs.
+                    </li>
+                    <li>
+                        <strong>[December 2025]</strong>
+                        Attended the
+                        <a href="https://www.linkedin.com/posts/gautham-bharati_regionalaiimpactconference2025-ai-tts-activity-7405125754184859648-rzzb">Regional AI Impact Conference 2025</a>
+                        at Mahatma Mandir, Gandhinagar — an IndiaAI pre-summit for the India–AI Impact Summit 2026, hosted with IIT Gandhinagar.
+                    </li>
+                    <li>
+                        <strong>[June 2025]</strong>
+                        Attended the
+                        <a href="https://lingo-iitgn.github.io/awards.html">Microsoft Research India Academic Summit 2025</a>
+                        virtually.
+                    </li>
+                    <li>
+                        <strong>[February 2025]</strong>
+                        Part of Lingo Labs at
+                        <a href="https://www.linkedin.com/posts/lingo-labs-iitgn_colab2025-ai-activity-7299649256741572608-mVUY">CoLab 2025</a>,
+                        IIT Gandhinagar’s Industry Open House, where the lab showcased work in responsible AI, AI for education, and NLP for India.
+                    </li>
+                    <li>
+                        <strong>[January 2025]</strong>
+                        Part of Team Lingo Labs at the
+                        <a href="https://www.linkedin.com/posts/iamindrayudh_curiosity-carnival-at-indian-institute-activity-7287013217699090432-7oT6">Curiosity Carnival</a>
+                        at IIT Gandhinagar.
+                    </li>
+                </ul>
+                <details class="more">
+                    <summary>Earlier news</summary>
+                    <ul class="news-feed">
+                        <li>
+                            <strong>[June 2024]</strong>
+                            Secured admission to
+                            <a href="https://www.linkedin.com/posts/iamindrayudh_iitgandhinagar-mtech-artificialintelligence-activity-7208868734352986112-U5o_">IIT Gandhinagar</a>
+                            for an M.Tech in Artificial Intelligence.
+                        </li>
+                        <li>
+                            <strong>[August 2022]</strong>
+                            Attended the
+                            <a href="https://www.linkedin.com/posts/iamindrayudh_google-googlecloud-googlecloudplatform-activity-6963551514833367040-6OnZ">Google Cloud Migration Summit 2022</a>.
+                        </li>
+                    </ul>
+                </details>
+
+                <h2 id="experience">Experience</h2>
+                <ul class="cv-list">
+                    <li>
+                        <p class="cv-line"><strong>Deccan AI</strong> (January 2026 — present)</p>
+                        <p class="cv-line">ML Researcher</p>
+                        <p class="cv-line cv-detail">Designed the evaluation plan for <a href="https://www.deccan.ai/voxclash-tts-leaderboard">VoxClash</a>, a blind human-preference TTS leaderboard across Indic and Indian-English voices.</p>
+                        <p class="cv-line cv-detail">Worked on the <a href="https://www.deccan.ai/research/if-benchmark-constraint-choice-predicts-failure-rate-better-than-model-choice">instruction-following benchmark</a> evaluating multi-constraint prompts on frontier models.</p>
+                        <p class="cv-line cv-detail">Worked on trajectory-based workflow evaluation using a rule-based plus LLM-as-a-judge approach.</p>
+                        <p class="cv-line cv-detail">Developed sanity and contamination checkers for Terminal-Bench tasks to improve evaluation reliability.</p>
+                        <p class="cv-line cv-detail">Worked on a spatial counterfactual occlusion rearrangement evaluation benchmark for VLMs.</p>
+                    </li>
+                    <li>
+                        <p class="cv-line"><strong>Lingo Labs, IIT Gandhinagar</strong> (2024 — present)</p>
+                        <p class="cv-line">Graduate Researcher / Speech NLP Researcher</p>
+                        <p class="cv-line cv-detail">Building an ASR system for Indic languages from scratch.</p>
+                        <p class="cv-line cv-detail">Developed a cross-lingual STS model that processes audio from an Asian tonal language to English through a multi-stage pipeline.</p>
+                    </li>
+                    <li>
+                        <p class="cv-line"><strong>Wipro Technologies</strong>, Bengaluru (2022 — 2023)</p>
+                        <p class="cv-line">Software Developer</p>
+                        <p class="cv-line cv-detail">Transformed legacy COBOL modules into efficient JCL scripts for RSA Insurance Group systems, reducing processing time by about 40%.</p>
+                        <p class="cv-line cv-detail">Reduced defect leakage by around 30%, improving compliance and software quality.</p>
+                    </li>
+                </ul>
+
+                <h2 id="research-interests">Research Interests</h2>
+                <div class="chip-group">
+                    <span class="chip-group-label">Speech and language</span>
+                    <div class="chips">
+                        <span class="chip">Automatic Speech Recognition</span>
+                        <span class="chip">Text-to-Speech</span>
+                        <span class="chip">Voice AI</span>
+                        <span class="chip">Audio Models</span>
+                        <span class="chip">Cross-Lingual Semantics</span>
+                        <span class="chip">Indic Languages</span>
+                    </div>
+                </div>
+                <div class="chip-group">
+                    <span class="chip-group-label">Evaluation</span>
+                    <div class="chips">
+                        <span class="chip">Agent Evaluation</span>
+                        <span class="chip">VLM Benchmarks</span>
+                        <span class="chip">Model Evaluation</span>
+                    </div>
+                </div>
+
+                <h2 id="projects">Projects</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <p>
+                            <span class="card-title">VoxClash</span>
+                            A blind, human-preference TTS leaderboard. Listeners compare model-versus-model clips; ranks come from Elo scores with issue tags for where a voice breaks down.
+                            <span class="card-meta">
+                                <span class="badge">TTS</span>
+                                <span class="badge">Evaluation</span>
+                                <span class="badge">Deccan AI</span>
+                            </span>
+                            <a href="https://www.deccan.ai/voxclash-tts-leaderboard" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Leaderboard
+                            </a>
+                            ·
+                            <a href="https://www.deccan.ai/research/introducing-voxclash-a-tts-leaderboard-that-reveals-where-exactly-a-model-breaks-down" target="_blank" rel="noopener noreferrer">Writeup</a>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <p>
+                            <span class="card-title">Full-Duplex S2S Model</span>
+                            A full-duplex speech-to-speech model. Details coming soon.
+                            <span class="card-meta">
+                                <span class="badge">Coming soon</span>
+                                <span class="badge">Speech</span>
+                                <span class="badge">Lingo Labs</span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <p>
+                            <span class="card-title">Self Supervised ASR</span>
+                            An end-to-end ASR pipeline built from scratch in PyTorch, with self-supervised pre-training using a Transformer encoder and CTC fine-tuning, focused on Indic languages.
+                            <span class="card-meta">
+                                <span class="badge">ASR</span>
+                                <span class="badge">Self-supervised</span>
+                                <span class="badge">PyTorch</span>
+                                <span class="badge">Lingo Labs</span>
+                            </span>
+                            <a href="https://github.com/lingo-iitgn/ASR-SSL" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <p>
+                            <span class="card-title">CoT-Llama3.3-70B</span>
+                            Implemented a Chain of Thought reasoning framework using Meta's Llama 3.3 70B model through the Groq API.
+                            <span class="card-meta">
+                                <span class="badge">LLM</span>
+                                <span class="badge">Python</span>
+                                <span class="badge">PyTorch</span>
+                                <span class="badge">Prompt Engineering</span>
+                            </span>
+                            <a href="https://github.com/iamindrayudh/CoT-Llama3.3-70B" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> View repository
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <h2 id="education">Education</h2>
+                <ul class="cv-list">
+                    <li>
+                        <p class="cv-line"><strong>Indian Institute of Technology Gandhinagar</strong> (2024 — present)</p>
+                        <p class="cv-line">M.Tech in Artificial Intelligence</p>
+                        <p class="cv-line cv-detail">Research focus: NLP, ASR · Advisor: <a href="https://mayank4490.github.io/">Prof. Mayank Singh</a></p>
+                    </li>
+                    <li>
+                        <p class="cv-line"><strong>Chandigarh University (CU-IDOL)</strong> (2022 — 2024)</p>
+                        <p class="cv-line">Masters in Computer Applications</p>
+                    </li>
+                    <li>
+                        <p class="cv-line"><strong>Maulana Abul Kalam Azad University of Technology (WBUT)</strong> (2019 — 2022)</p>
+                        <p class="cv-line">Bachelors in Computer Applications</p>
+                    </li>
+                </ul>
+
+                <h2 id="teaching">Teaching</h2>
+                <div class="teach-group">
+                    <p class="cv-line"><strong>Indian Institute of Technology Gandhinagar</strong></p>
+                </div>
+                <ul class="detail-list">
+                    <li><em>CS613: Natural Language Processing</em>, Fall 2024</li>
+                    <li><em>ES114: Probability, Statistics and Data Visualization</em>, Spring 2025</li>
+                    <li><em>ES112: Computing</em></li>
+                </ul>
+
+                <h2 id="skills">Skills</h2>
+                <div class="chips">
+                    <span class="chip">Natural Language Processing</span>
+                    <span class="chip">Automatic Speech Recognition</span>
+                    <span class="chip">Machine Learning</span>
+                    <span class="chip">Deep Learning</span>
+                    <span class="chip">Python</span>
+                    <span class="chip">PyTorch</span>
+                    <span class="chip">TensorFlow</span>
+                    <span class="chip">Transformers</span>
+                    <span class="chip">Data Preprocessing</span>
+                    <span class="chip">Model Evaluation</span>
+                    <span class="chip">Research and Development</span>
+                    <span class="chip">Statistical Analysis</span>
+                    <span class="chip">Git and GitHub</span>
+                </div>
+
+                <h2 id="contact">Contact</h2>
+                <p>
+                    I'm always open to discussing research opportunities, collaborative work,
+                    or connecting with people building thoughtful AI systems.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="mailto:indrayudhmandal2010@gmail.com">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email
                     </a>
-                    <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" class="mono-button rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white hover:text-black">
-                        Connect on LinkedIn
+                    <a class="btn" href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i> LinkedIn
                     </a>
-                    <a href="https://github.com/iamindrayudh" target="_blank" rel="noopener noreferrer" class="mono-button rounded-full border border-white/15 bg-transparent px-6 py-3 text-sm font-semibold text-zinc-300 hover:border-white hover:text-white">
-                        GitHub
+                    <a class="btn" href="https://github.com/iamindrayudh" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+                    </a>
+                    <a class="btn" href="https://x.com/iamindrayudh" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i> X
                     </a>
                 </div>
-            </section>
+            </article>
         </main>
-
-        <footer class="px-4 pb-10 sm:px-6 lg:px-8">
-            <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[0.03] px-6 py-6 text-center text-sm text-zinc-500">
-                <p>&copy; 2025 Indrayudh. All rights reserved.</p>
-                <p class="mt-2">"Attention is all you need?"</p>
-            </div>
-        </footer>
     </div>
 
-    <script>
-        const root = document.documentElement;
-        window.addEventListener('pointermove', (event) => {
-            root.style.setProperty('--spotlight-x', `${event.clientX}px`);
-            root.style.setProperty('--spotlight-y', `${event.clientY}px`);
-        });
-    </script>
+    <footer class="site-footer">
+        <p>&copy; 2026 Indrayudh Mandal</p>
+        <p>“Attention is all you need?”</p>
+    </footer>
 </body>
 </html>
