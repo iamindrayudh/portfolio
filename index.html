@@ -328,8 +328,37 @@
             padding: 0;
         }
 
-        .cv-list > li {
+        .cv-list > li,
+        .teach-group {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 132px;
+            gap: 8px 28px;
+            align-items: start;
             padding: 0 0 18px;
+        }
+
+        .cv-body { min-width: 0; }
+
+        .cv-marks {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            padding-top: 2px;
+        }
+
+        .cv-marks img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 124px;
+            max-height: 48px;
+            object-fit: contain;
+        }
+
+        .cv-marks img.mark-seal {
+            max-width: 58px;
+            max-height: 58px;
         }
 
         .cv-line {
@@ -510,6 +539,19 @@
 
             .content-card { padding: 28px 22px 24px; }
         }
+
+        @media (max-width: 640px) {
+            .cv-list > li,
+            .teach-group {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .cv-marks {
+                align-items: flex-start;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
     </style>
 </head>
 <body>
@@ -684,25 +726,49 @@
                 <h2 id="experience">Experience</h2>
                 <ul class="cv-list">
                     <li>
-                        <p class="cv-line"><strong>Deccan AI</strong> (January 2026 — present)</p>
-                        <p class="cv-line">ML Researcher</p>
-                        <p class="cv-line cv-detail">Designed the evaluation plan for <a href="https://www.deccan.ai/voxclash-tts-leaderboard">VoxClash</a>, a blind human-preference TTS leaderboard across Indic and Indian-English voices.</p>
-                        <p class="cv-line cv-detail">Worked on the <a href="https://www.deccan.ai/research/if-benchmark-constraint-choice-predicts-failure-rate-better-than-model-choice">instruction-following benchmark</a> evaluating multi-constraint prompts on frontier models.</p>
-                        <p class="cv-line cv-detail">Worked on trajectory-based workflow evaluation using a rule-based plus LLM-as-a-judge approach.</p>
-                        <p class="cv-line cv-detail">Developed sanity and contamination checkers for Terminal-Bench tasks to improve evaluation reliability.</p>
-                        <p class="cv-line cv-detail">Worked on a spatial counterfactual occlusion rearrangement evaluation benchmark for VLMs.</p>
+                        <div class="cv-body">
+                            <p class="cv-line"><strong>Deccan AI</strong> (January 2026 — present)</p>
+                            <p class="cv-line">ML Researcher</p>
+                            <p class="cv-line cv-detail">Designed the evaluation plan for <a href="https://www.deccan.ai/voxclash-tts-leaderboard">VoxClash</a>, a blind human-preference TTS leaderboard across Indic and Indian-English voices.</p>
+                            <p class="cv-line cv-detail">Worked on the <a href="https://www.deccan.ai/research/if-benchmark-constraint-choice-predicts-failure-rate-better-than-model-choice">instruction-following benchmark</a> evaluating multi-constraint prompts on frontier models.</p>
+                            <p class="cv-line cv-detail">Worked on trajectory-based workflow evaluation using a rule-based plus LLM-as-a-judge approach.</p>
+                            <p class="cv-line cv-detail">Developed sanity and contamination checkers for Terminal-Bench tasks to improve evaluation reliability.</p>
+                            <p class="cv-line cv-detail">Worked on a spatial counterfactual occlusion rearrangement evaluation benchmark for VLMs.</p>
+                        </div>
+                        <div class="cv-marks">
+                            <a href="https://www.deccan.ai/" target="_blank" rel="noopener noreferrer">
+                                <img src="assets/img/logos/deccan-ai.png" alt="Deccan AI">
+                            </a>
+                        </div>
                     </li>
                     <li>
-                        <p class="cv-line"><strong>Lingo Labs, IIT Gandhinagar</strong> (2024 — present)</p>
-                        <p class="cv-line">Graduate Researcher / Speech NLP Researcher</p>
-                        <p class="cv-line cv-detail">Building an ASR system for Indic languages from scratch.</p>
-                        <p class="cv-line cv-detail">Developed a cross-lingual STS model that processes audio from an Asian tonal language to English through a multi-stage pipeline.</p>
+                        <div class="cv-body">
+                            <p class="cv-line"><strong>Lingo Labs, IIT Gandhinagar</strong> (2024 — present)</p>
+                            <p class="cv-line">Graduate Researcher / Speech NLP Researcher</p>
+                            <p class="cv-line cv-detail">Building an ASR system for Indic languages from scratch.</p>
+                            <p class="cv-line cv-detail">Developed a cross-lingual STS model that processes audio from an Asian tonal language to English through a multi-stage pipeline.</p>
+                        </div>
+                        <div class="cv-marks">
+                            <a href="https://lingo-iitgn.github.io/" target="_blank" rel="noopener noreferrer">
+                                <img src="assets/img/logos/lingo-labs.png" alt="Lingo Labs">
+                            </a>
+                            <a href="https://iitgn.ac.in/" target="_blank" rel="noopener noreferrer">
+                                <img class="mark-seal" src="assets/img/logos/iit-gandhinagar.png" alt="IIT Gandhinagar">
+                            </a>
+                        </div>
                     </li>
                     <li>
-                        <p class="cv-line"><strong>Wipro Technologies</strong>, Bengaluru (2022 — 2023)</p>
-                        <p class="cv-line">Software Developer</p>
-                        <p class="cv-line cv-detail">Transformed legacy COBOL modules into efficient JCL scripts for RSA Insurance Group systems, reducing processing time by about 40%.</p>
-                        <p class="cv-line cv-detail">Reduced defect leakage by around 30%, improving compliance and software quality.</p>
+                        <div class="cv-body">
+                            <p class="cv-line"><strong>Wipro Technologies</strong>, Bengaluru (2022 — 2023)</p>
+                            <p class="cv-line">Software Developer</p>
+                            <p class="cv-line cv-detail">Transformed legacy COBOL modules into efficient JCL scripts for RSA Insurance Group systems, reducing processing time by about 40%.</p>
+                            <p class="cv-line cv-detail">Reduced defect leakage by around 30%, improving compliance and software quality.</p>
+                        </div>
+                        <div class="cv-marks">
+                            <a href="https://www.wipro.com/" target="_blank" rel="noopener noreferrer">
+                                <img src="assets/img/logos/wipro.svg" alt="Wipro">
+                            </a>
+                        </div>
                     </li>
                 </ul>
 
@@ -791,29 +857,57 @@
                 <h2 id="education">Education</h2>
                 <ul class="cv-list">
                     <li>
-                        <p class="cv-line"><strong>Indian Institute of Technology Gandhinagar</strong> (2024 — present)</p>
-                        <p class="cv-line">M.Tech in Artificial Intelligence</p>
-                        <p class="cv-line cv-detail">Research focus: NLP, ASR · Advisor: <a href="https://mayank4490.github.io/">Prof. Mayank Singh</a></p>
+                        <div class="cv-body">
+                            <p class="cv-line"><strong>Indian Institute of Technology Gandhinagar</strong> (2024 — present)</p>
+                            <p class="cv-line">M.Tech in Artificial Intelligence</p>
+                            <p class="cv-line cv-detail">Research focus: NLP, ASR · Advisor: <a href="https://mayank4490.github.io/">Prof. Mayank Singh</a></p>
+                        </div>
+                        <div class="cv-marks">
+                            <a href="https://iitgn.ac.in/" target="_blank" rel="noopener noreferrer">
+                                <img class="mark-seal" src="assets/img/logos/iit-gandhinagar.png" alt="IIT Gandhinagar">
+                            </a>
+                        </div>
                     </li>
                     <li>
-                        <p class="cv-line"><strong>Chandigarh University (CU-IDOL)</strong> (2022 — 2024)</p>
-                        <p class="cv-line">Masters in Computer Applications</p>
+                        <div class="cv-body">
+                            <p class="cv-line"><strong>Chandigarh University (CU-IDOL)</strong> (2022 — 2024)</p>
+                            <p class="cv-line">Masters in Computer Applications</p>
+                        </div>
+                        <div class="cv-marks">
+                            <a href="https://www.cuchd.in/" target="_blank" rel="noopener noreferrer">
+                                <img src="assets/img/logos/chandigarh-university.png" alt="Chandigarh University">
+                            </a>
+                        </div>
                     </li>
                     <li>
-                        <p class="cv-line"><strong>Maulana Abul Kalam Azad University of Technology (WBUT)</strong> (2019 — 2022)</p>
-                        <p class="cv-line">Bachelors in Computer Applications</p>
+                        <div class="cv-body">
+                            <p class="cv-line"><strong>Maulana Abul Kalam Azad University of Technology (WBUT)</strong> (2019 — 2022)</p>
+                            <p class="cv-line">Bachelors in Computer Applications</p>
+                        </div>
+                        <div class="cv-marks">
+                            <a href="https://makautwb.ac.in/" target="_blank" rel="noopener noreferrer">
+                                <img class="mark-seal" src="assets/img/logos/makaut.png" alt="MAKAUT">
+                            </a>
+                        </div>
                     </li>
                 </ul>
 
                 <h2 id="teaching">Teaching</h2>
                 <div class="teach-group">
-                    <p class="cv-line"><strong>Indian Institute of Technology Gandhinagar</strong></p>
+                    <div class="cv-body">
+                        <p class="cv-line"><strong>Indian Institute of Technology Gandhinagar</strong></p>
+                        <ul class="detail-list">
+                            <li><em>CS613: Natural Language Processing</em>, Fall 2024</li>
+                            <li><em>ES114: Probability, Statistics and Data Visualization</em>, Spring 2025</li>
+                            <li><em>ES112: Computing</em></li>
+                        </ul>
+                    </div>
+                    <div class="cv-marks">
+                        <a href="https://iitgn.ac.in/" target="_blank" rel="noopener noreferrer">
+                            <img class="mark-seal" src="assets/img/logos/iit-gandhinagar.png" alt="IIT Gandhinagar">
+                        </a>
+                    </div>
                 </div>
-                <ul class="detail-list">
-                    <li><em>CS613: Natural Language Processing</em>, Fall 2024</li>
-                    <li><em>ES114: Probability, Statistics and Data Visualization</em>, Spring 2025</li>
-                    <li><em>ES112: Computing</em></li>
-                </ul>
 
                 <h2 id="skills">Skills</h2>
                 <div class="chips">
