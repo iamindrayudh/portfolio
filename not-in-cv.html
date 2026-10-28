@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f5666">
+    <title>What’s not in CV | Indrayudh Mandal</title>
+    <meta name="description" content="Game modding from 2011 to 2014 — GTA San Andreas, EA Sports Cricket 07, and WWF Raw — kept off the CV.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        :root {
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, Cambria, "Times New Roman", serif;
+            --bg: #fbfaf7;
+            --surface: #ffffff;
+            --surface-2: #f6f5f1;
+            --border: #e0ddd5;
+            --border-strong: #c6c2b7;
+            --text: #1c1c1a;
+            --text-soft: #3a3a36;
+            --muted: #6f6d66;
+            --accent: #0f5666;
+            --accent-hover: #14707f;
+            --accent-soft: #eaf1f2;
+            --radius-sm: 3px;
+            --radius: 5px;
+            --radius-lg: 6px;
+            --sidebar-w: 274px;
+            --gap: 58px;
+            --maxw: 1140px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 8px;
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 12px;
+            z-index: 10;
+        }
+
+        .skip-link:focus { left: 8px; }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+            gap: var(--gap);
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 44px 30px 24px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 26px;
+            align-self: start;
+            max-height: calc(100vh - 52px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .profile-card,
+        .site-nav,
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+        }
+
+        .profile-card {
+            padding: 24px 20px 18px;
+            text-align: center;
+        }
+
+        .avatar-frame {
+            width: 132px;
+            height: 132px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            padding: 3px;
+            background: var(--border-strong);
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 18%;
+            display: block;
+            background: var(--surface);
+        }
+
+        .profile-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 4px;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-name a { color: var(--text); }
+        .profile-name a:hover { color: var(--accent); }
+
+        .profile-role {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 0 6px;
+        }
+
+        .profile-affiliation {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin: 0 0 14px;
+            line-height: 1.45;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .social-row a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            color: var(--muted);
+            border: 1px solid var(--border-strong);
+        }
+
+        .social-row a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .site-nav {
+            margin-top: 16px;
+            padding: 12px 10px;
+        }
+
+        .nav-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 4px 10px 10px;
+        }
+
+        .site-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 10px;
+            border-radius: var(--radius-sm);
+            color: var(--text-soft);
+            font-size: 0.86rem;
+        }
+
+        .site-nav a:hover,
+        .site-nav a:focus-visible,
+        .site-nav a[aria-current="page"] {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .site-nav i {
+            width: 16px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .content { min-width: 0; }
+
+        .content-card { padding: 36px 44px 30px; }
+
+        .back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            margin-bottom: 18px;
+            font-size: 0.86rem;
+            font-weight: 600;
+        }
+
+        .era {
+            display: block;
+            margin: 0 0 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            margin: 0 0 10px;
+            letter-spacing: -0.018em;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .lead {
+            font-size: 1.03rem;
+            color: var(--text-soft);
+            max-width: 68ch;
+            margin: 0 0 8px;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            margin: 2.1rem 0 0.7rem;
+            padding-bottom: 0.38rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.008em;
+            border-bottom: 1px solid var(--border-strong);
+        }
+
+        .detail-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-width: 72ch;
+        }
+
+        .detail-list li {
+            position: relative;
+            padding: 4px 0 4px 16px;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        .detail-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.72em;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--border-strong);
+        }
+
+        code {
+            font-size: 0.88em;
+            padding: 0 4px;
+            border-radius: 3px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+        }
+
+        .site-footer {
+            max-width: var(--maxw);
+            margin: 10px auto 0;
+            padding: 26px 30px 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .site-footer p { margin: 4px 0; }
+
+        @media (max-width: 900px) {
+            .wrapper {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 22px;
+                padding: 26px 18px 20px;
+            }
+
+            .sidebar {
+                position: static;
+                max-height: none;
+                overflow: visible;
+            }
+
+            .content-card { padding: 28px 22px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="avatar-frame">
+                    <img src="me.jpeg" alt="Portrait of Indrayudh Mandal">
+                </div>
+                <p class="profile-name"><a href="index.html">Indrayudh Mandal</a></p>
+                <p class="profile-role">ML Researcher</p>
+                <p class="profile-affiliation">Deccan AI · Lingo Labs, IIT Gandhinagar</p>
+                <div class="social-row">
+                    <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://github.com/iamindrayudh" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://x.com/iamindrayudh" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="mailto:indrayudhmandal2010@gmail.com" title="Email" aria-label="Email">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="site-nav" aria-label="Section navigation">
+                <p class="nav-title">Explore</p>
+                <ul>
+                    <li><a href="index.html#about"><i class="fa-solid fa-user" aria-hidden="true"></i>About</a></li>
+                    <li><a href="index.html#news"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i>News</a></li>
+                    <li><a href="index.html#experience"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Experience</a></li>
+                    <li><a href="not-in-cv.html" aria-current="page"><i class="fa-solid fa-gamepad" aria-hidden="true"></i>What’s not in CV</a></li>
+                    <li><a href="index.html#research-interests"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i>Research Interests</a></li>
+                    <li><a href="index.html#projects"><i class="fa-solid fa-flask" aria-hidden="true"></i>Projects</a></li>
+                    <li><a href="index.html#education"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Education</a></li>
+                    <li><a href="index.html#teaching"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>Teaching</a></li>
+                    <li><a href="index.html#skills"><i class="fa-solid fa-code" aria-hidden="true"></i>Skills</a></li>
+                    <li><a href="index.html#contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content" id="main">
+            <article class="content-card">
+                <a class="back" href="index.html#experience"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to the CV</a>
+                <p class="era">2011–2014</p>
+                <h1>What’s not in CV</h1>
+                <p class="lead">Game modding from before any of this was a résumé.</p>
+
+                <h2>1. GTA: San Andreas — CLEO Modding</h2>
+                <ul class="detail-list">
+                    <li>Modified CJ’s appearance, outfits, and character textures using TXD Workshop.</li>
+                    <li>Created custom CLEO scripts using Sanny Builder for vehicle spawning, teleportation, cheat menus, super-jump, and wanted-level manipulation.</li>
+                    <li>Extracted and replaced character, vehicle, and world assets using IMG Tool 2.0.</li>
+                    <li>Customized in-game text and notifications using GXT Editor and <code>.fxt</code> resources.</li>
+                    <li>Experimented with ASI Loader to load compatible plugins and extend gameplay functionality.</li>
+                </ul>
+
+                <h2>2. EA Sports Cricket 07 — Game Patching</h2>
+                <ul class="detail-list">
+                    <li>Extracted and repacked game archives using BIGGUI and edited <code>.fsh</code> textures using FSHed.</li>
+                    <li>Created custom team jerseys, half-sleeve kits, sponsor graphics, player face packs, and pitch textures using Adobe Photoshop.</li>
+                    <li>Updated player attributes, squads, line-ups, and IPL-style tournaments using Player Editor and roster tools.</li>
+                    <li>Modified stadium and pitch assets to update the game’s visual presentation.</li>
+                    <li>Experimented with batting stroke animations, shot sequences, and timing adjustments using community modding tools.</li>
+                </ul>
+
+                <h2>3. WWF Raw PC / WWE — Wrestling Modding</h2>
+                <ul class="detail-list">
+                    <li>Created custom wrestler appearances and attire by modifying character textures and compatible model assets.</li>
+                    <li>Extracted and replaced supported game resources using XpkImg.</li>
+                    <li>Recreated signature moves, finishers, and taunts by combining existing animations and move sequences.</li>
+                    <li>Inspected binary resources using HxD Hex Editor to investigate game data and configuration.</li>
+                    <li>Prepared custom entrance videos using RAD Video Tools for compatible Bink video playback.</li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Indrayudh Mandal</p>
+    </footer>
+</body>
+</html>
