@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f5666">
+    <title>Gallery | Indrayudh Mandal</title>
+    <meta name="description" content="Photos from conferences and lab events: India AI Impact Summit, IndoML, CoLab, and the Curiosity Carnival.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        :root {
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, Cambria, "Times New Roman", serif;
+            --bg: #fbfaf7;
+            --surface: #ffffff;
+            --surface-2: #f6f5f1;
+            --border: #e0ddd5;
+            --border-strong: #c6c2b7;
+            --text: #1c1c1a;
+            --text-soft: #3a3a36;
+            --muted: #6f6d66;
+            --accent: #0f5666;
+            --accent-hover: #14707f;
+            --accent-soft: #eaf1f2;
+            --radius-sm: 3px;
+            --radius: 5px;
+            --radius-lg: 6px;
+            --sidebar-w: 274px;
+            --gap: 58px;
+            --maxw: 1140px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 8px;
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 12px;
+            z-index: 10;
+        }
+
+        .skip-link:focus { left: 8px; }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+            gap: var(--gap);
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 44px 30px 24px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 26px;
+            align-self: start;
+            max-height: calc(100vh - 52px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .profile-card,
+        .site-nav,
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+        }
+
+        .profile-card {
+            padding: 24px 20px 18px;
+            text-align: center;
+        }
+
+        .avatar-frame {
+            width: 132px;
+            height: 132px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            padding: 3px;
+            background: var(--border-strong);
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 18%;
+            display: block;
+            background: var(--surface);
+        }
+
+        .profile-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 4px;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-name a { color: var(--text); }
+        .profile-name a:hover { color: var(--accent); }
+
+        .profile-role {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 0 6px;
+        }
+
+        .profile-affiliation {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin: 0 0 14px;
+            line-height: 1.45;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .social-row a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            color: var(--muted);
+            border: 1px solid var(--border-strong);
+        }
+
+        .social-row a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .site-nav {
+            margin-top: 16px;
+            padding: 12px 10px;
+        }
+
+        .nav-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 4px 10px 10px;
+        }
+
+        .site-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 10px;
+            border-radius: var(--radius-sm);
+            color: var(--text-soft);
+            font-size: 0.86rem;
+        }
+
+        .site-nav a:hover,
+        .site-nav a:focus-visible,
+        .site-nav a[aria-current="page"] {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .site-nav i {
+            width: 16px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .content { min-width: 0; }
+
+        .content-card { padding: 36px 44px 30px; }
+
+        .back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            margin-bottom: 18px;
+            font-size: 0.86rem;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            margin: 0 0 10px;
+            letter-spacing: -0.018em;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .lead {
+            font-size: 1.03rem;
+            color: var(--text-soft);
+            max-width: 68ch;
+            margin: 0 0 8px;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            margin: 2.1rem 0 0.35rem;
+            padding-bottom: 0.38rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.008em;
+            border-bottom: 1px solid var(--border-strong);
+        }
+
+        .event-meta {
+            margin: 8px 0 12px;
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 12px;
+        }
+
+        .shot {
+            margin: 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--surface-2);
+        }
+
+        .shot button {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: zoom-in;
+        }
+
+        .shot img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            background: var(--surface-2);
+        }
+
+        .shot figcaption {
+            padding: 8px 10px 10px;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--text-soft);
+        }
+
+        dialog {
+            width: min(920px, calc(100vw - 32px));
+            max-height: calc(100vh - 32px);
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+        }
+
+        dialog::backdrop { background: rgba(28, 28, 26, 0.72); }
+
+        dialog img {
+            display: block;
+            width: 100%;
+            max-height: calc(100vh - 120px);
+            object-fit: contain;
+            background: #111;
+        }
+
+        dialog form { margin: 0 0 8px; text-align: right; }
+
+        dialog button {
+            border: 1px solid var(--border-strong);
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 4px 10px;
+            font: inherit;
+            font-size: 0.82rem;
+            cursor: pointer;
+        }
+
+        .site-footer {
+            max-width: var(--maxw);
+            margin: 10px auto 0;
+            padding: 26px 30px 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .site-footer p { margin: 4px 0; }
+
+        @media (max-width: 900px) {
+            .wrapper {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 22px;
+                padding: 26px 18px 20px;
+            }
+
+            .sidebar {
+                position: static;
+                max-height: none;
+                overflow: visible;
+            }
+
+            .content-card { padding: 28px 22px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="avatar-frame">
+                    <img src="me.jpeg" alt="Portrait of Indrayudh Mandal">
+                </div>
+                <p class="profile-name"><a href="index.html">Indrayudh Mandal</a></p>
+                <p class="profile-role">ML Researcher</p>
+                <p class="profile-affiliation">Deccan AI · Lingo Labs, IIT Gandhinagar</p>
+                <div class="social-row">
+                    <a href="https://www.linkedin.com/in/iamindrayudh/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://github.com/iamindrayudh" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://x.com/iamindrayudh" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="mailto:indrayudhmandal2010@gmail.com" title="Email" aria-label="Email">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="site-nav" aria-label="Section navigation">
+                <p class="nav-title">Explore</p>
+                <ul>
+                    <li><a href="index.html#about"><i class="fa-solid fa-user" aria-hidden="true"></i>About</a></li>
+                    <li><a href="index.html#news"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i>News</a></li>
+                    <li><a href="index.html#experience"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Experience</a></li>
+                    <li><a href="not-in-cv.html"><i class="fa-solid fa-gamepad" aria-hidden="true"></i>What’s not in CV</a></li>
+                    <li><a href="gallery.html" aria-current="page"><i class="fa-solid fa-images" aria-hidden="true"></i>Gallery</a></li>
+                    <li><a href="index.html#research-interests"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i>Research Interests</a></li>
+                    <li><a href="index.html#projects"><i class="fa-solid fa-flask" aria-hidden="true"></i>Projects</a></li>
+                    <li><a href="index.html#education"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Education</a></li>
+                    <li><a href="index.html#teaching"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>Teaching</a></li>
+                    <li><a href="index.html#skills"><i class="fa-solid fa-code" aria-hidden="true"></i>Skills</a></li>
+                    <li><a href="index.html#contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content" id="main">
+            <article class="content-card">
+                <a class="back" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back</a>
+                <h1>Gallery</h1>
+                <p class="lead">Photos from conferences and lab events, taken from public posts.</p>
+
+                <h2>India AI Impact Summit 2026</h2>
+                <p class="event-meta">18 February 2026 · Delhi · <a href="https://www.linkedin.com/posts/iamindrayudh_visited-the-india-ai-impact-summit-2026-at-activity-7430091813648052224-YfeL">Post</a></p>
+                <div class="gallery-grid">
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/ai-impact-2026-hall.jpg" alt="Indrayudh Mandal outside Hall 1 at the India AI Impact Summit 2026"></button>
+                        <figcaption>Outside Hall 1.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/ai-impact-2026-group.jpg" alt="Indrayudh Mandal with two colleagues in front of the AI Impact Summit backdrop"></button>
+                        <figcaption>With colleagues at the summit backdrop.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/ai-impact-2026-expo.jpg" alt="Indrayudh Mandal and a colleague in front of the India AI Impact Expo 2026 sign"></button>
+                        <figcaption>At the India AI Impact Expo sign.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/ai-impact-2026-flags.jpg" alt="Flags around the India AI Impact Summit 2026 fountain"></button>
+                        <figcaption>The summit fountain.</figcaption>
+                    </figure>
+                </div>
+
+                <h2>IndoML 2025</h2>
+                <p class="event-meta">19–21 December 2025 · BITS Pilani Hyderabad · <a href="https://www.linkedin.com/posts/iamindrayudh_indoml2025-activity-7407836104357367808-hRJ8">Post</a></p>
+                <div class="gallery-grid">
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/indoml-2025-campus.jpg" alt="Indrayudh Mandal on the lawn at BITS Pilani Hyderabad during IndoML 2025"></button>
+                        <figcaption>On campus during the symposium.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/indoml-2025-colleagues.jpg" alt="Indrayudh Mandal with two Lingo Labs colleagues outdoors at IndoML 2025"></button>
+                        <figcaption>With Lingo Labs colleagues.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/indoml-2025-hall.jpg" alt="Auditorium at IndoML 2025 with the symposium title on screen"></button>
+                        <figcaption>The Sixth Indian Symposium on Machine Learning.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/indoml-2025-keynote.jpg" alt="A keynote on stage at IndoML 2025"></button>
+                        <figcaption>A keynote during the symposium.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/indoml-2025-group.jpg" alt="Group photograph of attendees at IndoML 2025"></button>
+                        <figcaption>Symposium group photograph. <a href="https://www.linkedin.com/feed/update/urn:li:activity:7408117672359403520">IndoML</a></figcaption>
+                    </figure>
+                </div>
+
+                <h2>Regional AI Impact Conference 2025</h2>
+                <p class="event-meta">11 December 2025 · Mahatma Mandir, Gandhinagar · <a href="https://www.linkedin.com/posts/gautham-bharati_regionalaiimpactconference2025-ai-tts-activity-7405125754184859648-rzzb">Post</a></p>
+                <div class="gallery-grid">
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/regional-ai-2025-group.jpg" alt="A group standing outside Mahatma Mandir at the Regional AI Impact Conference"></button>
+                        <figcaption>Outside Mahatma Mandir.</figcaption>
+                    </figure>
+                </div>
+
+                <h2>CoLab 2025</h2>
+                <p class="event-meta">February 2025 · IIT Gandhinagar · <a href="https://www.linkedin.com/posts/lingo-labs-iitgn_colab2025-ai-activity-7299649256741572608-mVUY">Lingo Labs</a></p>
+                <div class="gallery-grid">
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/colab-team.jpg" alt="Lingo Labs team at their CoLab 2025 booth"></button>
+                        <figcaption>Lingo Labs at the open house.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/colab-booth.jpg" alt="Visitors at the Lingo Labs booth during CoLab 2025"></button>
+                        <figcaption>The Lingo Labs booth.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/colab-demo.jpg" alt="A demo at the Lingo Labs CoLab booth"></button>
+                        <figcaption>A demo at the booth.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/colab-room.jpg" alt="A discussion in a lab room during CoLab 2025"></button>
+                        <figcaption>A session during CoLab.</figcaption>
+                    </figure>
+                </div>
+
+                <h2>Curiosity Carnival</h2>
+                <p class="event-meta">January 2025 · IIT Gandhinagar · <a href="https://www.linkedin.com/posts/iamindrayudh_curiosity-carnival-at-indian-institute-activity-7287013217699090432-7oT6">Post</a></p>
+                <div class="gallery-grid">
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/carnival-demo.jpg" alt="Indrayudh Mandal demonstrating a project to visitors at the Curiosity Carnival"></button>
+                        <figcaption>Demonstrating the lab’s work.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/carnival-team.jpg" alt="Indrayudh Mandal with teammates at the Curiosity Carnival"></button>
+                        <figcaption>With teammates at the stall.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/carnival-students.jpg" alt="School students gathered around a screen at the Lingo Labs stall"></button>
+                        <figcaption>Students at the stall.</figcaption>
+                    </figure>
+                    <figure class="shot">
+                        <button type="button"><img src="assets/img/gallery/carnival-stall.jpg" alt="Visitors trying a demo at the Curiosity Carnival stall"></button>
+                        <figcaption>Visitors at the demo.</figcaption>
+                    </figure>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Indrayudh Mandal</p>
+    </footer>
+
+    <dialog id="lightbox">
+        <form method="dialog"><button type="submit">Close</button></form>
+        <img id="lightbox-img" alt="">
+    </dialog>
+    <script>
+        const dialog = document.getElementById("lightbox");
+        const full = document.getElementById("lightbox-img");
+        document.querySelectorAll(".shot button").forEach((button) => {
+            button.addEventListener("click", () => {
+                const img = button.querySelector("img");
+                full.src = img.src;
+                full.alt = img.alt;
+                dialog.showModal();
+            });
+        });
+    </script>
+</body>
+</html>
