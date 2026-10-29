@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0f5666">
     <title>What’s not in CV | Indrayudh Mandal</title>
-    <meta name="description" content="Game modding from 2011 to 2014 — GTA San Andreas, EA Sports Cricket 07, and WWF Raw — kept off the CV.">
+    <meta name="description" content="Game modding from 2011 to 2014 — WWE Raw Ultimate Impact, GTA San Andreas, and EA Sports Cricket 07 — kept off the CV.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
@@ -282,6 +282,171 @@
             border: 1px solid var(--border);
         }
 
+        .found-note {
+            max-width: 72ch;
+            margin: 0.85rem 0 1rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        .mod-list {
+            list-style: none;
+            margin: 0 0 16px;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .mod-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface-2);
+        }
+
+        .mod-copy {
+            min-width: 0;
+        }
+
+        .mod-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .mod-meta {
+            display: block;
+            margin-top: 2px;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 0.845rem;
+            font-weight: 600;
+            border: 1px solid var(--border-strong);
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        .btn:hover {
+            background: var(--surface);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .proof {
+            margin: 6px 0 4px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .proof summary {
+            cursor: pointer;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            list-style: none;
+        }
+
+        .proof summary::-webkit-details-marker { display: none; }
+
+        .proof summary::after {
+            content: " ▾";
+            font-weight: 500;
+        }
+
+        .proof[open] summary::after { content: " ▴"; }
+
+        .proof-note {
+            margin: 10px 0 12px;
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .shot {
+            margin: 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--surface-2);
+        }
+
+        .shot button {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: zoom-in;
+        }
+
+        .shot img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: top;
+            background: #111;
+        }
+
+        .shot figcaption {
+            padding: 8px 10px 10px;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--text-soft);
+        }
+
+        dialog {
+            width: min(920px, calc(100vw - 32px));
+            max-height: calc(100vh - 32px);
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+        }
+
+        dialog::backdrop { background: rgba(28, 28, 26, 0.72); }
+
+        dialog img {
+            display: block;
+            width: 100%;
+            max-height: calc(100vh - 120px);
+            object-fit: contain;
+            background: #111;
+        }
+
+        dialog form { margin: 0 0 8px; text-align: right; }
+
+        dialog button {
+            border: 1px solid var(--border-strong);
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 4px 10px;
+            font: inherit;
+            font-size: 0.82rem;
+            cursor: pointer;
+        }
+
         .site-footer {
             max-width: var(--maxw);
             margin: 10px auto 0;
@@ -307,6 +472,11 @@
             }
 
             .content-card { padding: 28px 22px 24px; }
+
+            .mod-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -363,7 +533,57 @@
                 <h1>What’s not in CV</h1>
                 <p class="lead">Game modding from before any of this was a résumé.</p>
 
-                <h2>1. GTA: San Andreas — CLEO Modding</h2>
+                <h2>1. WWE Raw Ultimate Impact</h2>
+                <ul class="detail-list">
+                    <li>Created custom wrestler appearances and attire by modifying character textures and compatible model assets.</li>
+                    <li>Extracted and replaced supported game resources using XpkImg.</li>
+                    <li>Recreated signature moves, finishers, and taunts by combining existing animations and move sequences.</li>
+                    <li>Inspected binary resources using HxD Hex Editor to investigate game data and configuration.</li>
+                    <li>Prepared custom entrance videos using RAD Video Tools for compatible Bink video playback.</li>
+                </ul>
+                <p class="found-note">
+                    A few very old mods turned up. The rest are lost.
+                </p>
+                <ol class="mod-list">
+                    <li>
+                        <span class="mod-copy">
+                            <span class="mod-name">1. Daniel Bryan Signature Taunt Mod</span>
+                            <span class="mod-meta">Yes / No taunt · posted 27 October 2013</span>
+                        </span>
+                        <a class="btn" href="assets/mods/daniel-bryan-signature-taunt.rar" download>
+                            <i class="fa-solid fa-download" aria-hidden="true"></i> Download
+                        </a>
+                    </li>
+                    <li>
+                        <span class="mod-copy">
+                            <span class="mod-name">2. Goldust Dustin Rhodes Full Character Mod</span>
+                            <span class="mod-meta">Full character · posted 25 October 2013</span>
+                        </span>
+                        <a class="btn" href="assets/mods/goldust-dustin-rhodes.rar" download>
+                            <i class="fa-solid fa-download" aria-hidden="true"></i> Download
+                        </a>
+                    </li>
+                </ol>
+                <details class="proof">
+                    <summary>The old Facebook posts from 2013</summary>
+                    <p class="proof-note">Dumped these in a Facebook group back then. Ignore the captions lol.</p>
+                    <div class="proof-grid">
+                        <figure class="shot">
+                            <button type="button">
+                                <img src="assets/img/mods/facebook-2013-bryan-taunt.png" alt="Facebook post from 27 October 2013 uploading the Daniel Bryan Yes Yes No No taunt archive">
+                            </button>
+                            <figcaption>27 October 2013 · Daniel Bryan taunt.</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <button type="button">
+                                <img src="assets/img/mods/facebook-2013-goldust.png" alt="Facebook post from 25 October 2013 uploading the Goldust Dustin Rhodes archive">
+                            </button>
+                            <figcaption>25 October 2013 · Goldust / Dustin Rhodes.</figcaption>
+                        </figure>
+                    </div>
+                </details>
+
+                <h2>2. GTA: San Andreas — CLEO Modding</h2>
                 <ul class="detail-list">
                     <li>Modified CJ’s appearance, outfits, and character textures using TXD Workshop.</li>
                     <li>Created custom CLEO scripts using Sanny Builder for vehicle spawning, teleportation, cheat menus, super-jump, and wanted-level manipulation.</li>
@@ -372,22 +592,13 @@
                     <li>Experimented with ASI Loader to load compatible plugins and extend gameplay functionality.</li>
                 </ul>
 
-                <h2>2. EA Sports Cricket 07 — Game Patching</h2>
+                <h2>3. EA Sports Cricket 07 — Game Patching</h2>
                 <ul class="detail-list">
                     <li>Extracted and repacked game archives using BIGGUI and edited <code>.fsh</code> textures using FSHed.</li>
                     <li>Created custom team jerseys, half-sleeve kits, sponsor graphics, player face packs, and pitch textures using Adobe Photoshop.</li>
                     <li>Updated player attributes, squads, line-ups, and IPL-style tournaments using Player Editor and roster tools.</li>
                     <li>Modified stadium and pitch assets to update the game’s visual presentation.</li>
                     <li>Experimented with batting stroke animations, shot sequences, and timing adjustments using community modding tools.</li>
-                </ul>
-
-                <h2>3. WWF Raw PC / WWE — Wrestling Modding</h2>
-                <ul class="detail-list">
-                    <li>Created custom wrestler appearances and attire by modifying character textures and compatible model assets.</li>
-                    <li>Extracted and replaced supported game resources using XpkImg.</li>
-                    <li>Recreated signature moves, finishers, and taunts by combining existing animations and move sequences.</li>
-                    <li>Inspected binary resources using HxD Hex Editor to investigate game data and configuration.</li>
-                    <li>Prepared custom entrance videos using RAD Video Tools for compatible Bink video playback.</li>
                 </ul>
             </article>
         </main>
@@ -396,5 +607,22 @@
     <footer class="site-footer">
         <p>&copy; 2026 Indrayudh Mandal</p>
     </footer>
+
+    <dialog id="lightbox">
+        <form method="dialog"><button type="submit">Close</button></form>
+        <img id="lightbox-img" alt="">
+    </dialog>
+    <script>
+        const dialog = document.getElementById("lightbox");
+        const full = document.getElementById("lightbox-img");
+        document.querySelectorAll(".shot button").forEach((button) => {
+            button.addEventListener("click", () => {
+                const img = button.querySelector("img");
+                full.src = img.src;
+                full.alt = img.alt;
+                dialog.showModal();
+            });
+        });
+    </script>
 </body>
 </html>
